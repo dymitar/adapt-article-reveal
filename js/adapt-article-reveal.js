@@ -97,21 +97,7 @@ var ArticleRevealView = Backbone.View.extend({
         $(window).resize();
 
         //set components to isVisible true
-        this.toggleisVisible( true );
-    },
-
-  	revealComponent: function(componentSelector) {
-        this.$(".article-reveal-open-button").addClass('visited');
-        this.$(".article-reveal-open-button").addClass('show');
-        
         this.toggleisVisible(true);
-        $("." + this.model.get("_id") + " > .article-inner ").slideDown(0);
-        this.$(".article-reveal-close-button").fadeIn(1);
-        $(window).scrollTo($(componentSelector), {
-            offset:{
-                top:-$('.navigation').height()
-            }
-        });
     },
 
     toggleisVisible: function(view) {
@@ -125,10 +111,6 @@ var ArticleRevealView = Backbone.View.extend({
   		  });
     },
     
-    toggleReveal: function(view) {
-    
-    },
-    
     preventDrag: function() {
         $(".article-reveal-open-button").on("dragstart", function(event) { 
             event.preventDefault(); 
@@ -138,6 +120,7 @@ var ArticleRevealView = Backbone.View.extend({
         });
     },
 
+    // Handles the Adapt page scrollTo event
     onProgressBarScrollTo: function(componentSelector) { 
         var allComponents = this.model.findDescendants('components');
         var componentID = componentSelector;
@@ -148,6 +131,20 @@ var ArticleRevealView = Backbone.View.extend({
                 return;
             }
         }, this));
+    },
+
+    revealComponent: function(componentSelector) {
+        this.$(".article-reveal-open-button").addClass('visited');
+        this.$(".article-reveal-open-button").addClass('show');
+        
+        this.toggleisVisible(true);
+        $("." + this.model.get("_id") + " > .article-inner ").slideDown(0);
+        this.$(".article-reveal-close-button").fadeIn(1);
+        $(window).scrollTo($(componentSelector), {
+            offset:{
+                top:-$('.navigation').height()
+            }
+        });
     }
 
 });
