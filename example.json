@@ -1,0 +1,24 @@
+"_articleReveal":{
+		"_classes": "",
+		"_height":400,
+		"_mobileHeight":200,
+		"_icon-text": "REVEAL",
+		"_closeButtonText": "CLOSE",
+		"_triggerPosition": {
+			"_top":50,
+			"_left":50
+		},
+		"_mobileTriggerPosition": {
+			"_top":50,
+			"_left":20
+		},
+		"_ariaLabels": {
+			"openArticle": "",
+			"closeArticle": ""
+		},
+		"_ariaRegions": {
+			"articleReveal": ""
+		},
+		"_backgroundImage":"course/en/images/quiz-slice-2.png",
+		"_mobileBackgroundImage":"course/en/images/quiz-mobile-slice-2.png"
+	}

@@ -1,0 +1,128 @@
+@article-reveal-max-width: 1400px;
+
+.article-reveal {
+	
+	margin: 0 auto;
+	position:relative;
+	max-width: @article-reveal-max-width;
+	
+	.article-reveal-inner {
+		position: relative;
+	}
+	
+  .article-reveal-open-button {
+		
+		position: absolute;
+		display: block;
+		background-color: #fff;
+		border: 1px solid @item-color;
+		border-radius:50%;
+		text-decoration:none;
+		cursor: pointer;
+		margin-left:-(@icon-size*2 + 30)/2;
+		
+		&.visited {
+		  .article-reveal-open-button-icon {
+			color: @item-visited-color;
+		  }
+		  &.show:hover {
+			background-color: #fff;
+			cursor:default; 
+		  }
+		}
+		&:hover {
+			background-color: #e7e7e7;
+		}
+	
+	}	
+	
+ 
+  /*Reveal button styling */
+  
+  .article-reveal-open-button-icon {
+    color: @item-color;
+    font-size: (@icon-size*2);
+    width:auto;
+    height:auto;
+    padding:15px;
+  }
+  
+
+  .article-reveal-open-button-text {
+	  position:absolute;
+	  color: @item-color;
+	  text-decoration:none;
+	  width: (@icon-size*2) + 30;
+	  text-align: center;
+  }
+  .article-reveal-text-block {
+		position:absolute;
+		padding-top: (@icon-size*3);
+		margin-top:10px;
+		width:40%;
+  }
+  
+  .article-reveal-text-block-inner {
+  		background-color:#fff;
+  		padding:5px;
+  }
+  
+  .article-reveal-heading-text {
+  	  display:block;
+  }
+  
+  .article-reveal-body-text {
+  	  display:block;  	
+  }
+  
+  .article-reveal-instruction-text {
+  	  display:block;
+  }
+  
+  
+  /*Close button styling */
+  
+   .article-reveal-close-button {
+    
+    position: absolute;
+    display: block;
+    background-color: #fff;
+    border: 1px solid @item-color;
+    border-radius:50%;
+	text-decoration:none;
+	cursor: pointer;
+	
+    &:hover {
+    	background-color: #e7e7e7;
+    }
+  }
+  
+  
+  .article-reveal-close-button {
+    z-index: 1;
+	  display:none;
+	  bottom:-45px; 
+	  right:75px;
+  }
+  
+  
+  .article-reveal-close-button-icon {
+    float:left;
+    color: @item-color;
+    font-size: (@icon-size*1);
+    width:auto;
+    height:auto;
+  }
+  
+  .article-reveal-close-button-text {
+	  position:absolute;
+	  float:left;
+	  color: @item-color;
+	  text-decoration:none;
+	  width:auto;
+	  text-align: center;
+	  padding-left:5px;
+  }
+  
+
+}
