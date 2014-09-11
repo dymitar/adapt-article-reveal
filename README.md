@@ -11,8 +11,8 @@ Configuration options are explained below the example JSON.
 
 "_articleReveal":{
     "_classes": "",
-    "_height":200,
-    "_mobileHeight":150,
+    "_height":300,
+    "_mobileHeight":200,
     "_icon-text": "REVEAL",
     "_closeButtonText": "CLOSE",
     "_triggerPosition": {
@@ -21,7 +21,7 @@ Configuration options are explained below the example JSON.
     },
     "_mobileTriggerPosition": {
         "_top":30,
-        "_left":20
+        "_left":50
     },
     "_ariaLabels": {
         "openArticle": "",
@@ -30,8 +30,8 @@ Configuration options are explained below the example JSON.
     "_ariaRegions": {
         "articleReveal": ""
     },
-    "_backgroundImage":"image.png",
-    "_mobileBackgroundImage":"mobile-image.png"
+    "_backgroundImage":"",
+    "_mobileBackgroundImage":""
 }
 
 ```
