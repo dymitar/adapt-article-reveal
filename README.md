@@ -12,7 +12,7 @@ Configuration options are explained below the example JSON.
 "_articleReveal":{
     "_classes": "",
     "_height":200,
-    "_mobileHeight":100,
+    "_mobileHeight":150,
     "_icon-text": "REVEAL",
     "_closeButtonText": "CLOSE",
     "_triggerPosition": {
