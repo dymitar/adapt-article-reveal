@@ -1,11 +1,11 @@
 {
   "name": "adapt-article-reveal",
   "version": "0.0.1",
-  "homepage": "https://github.com/adaptlearning/adapt-contrib-tutor",
+  "homepage": "https://github.com/cgkineo/adapt-article-reveal",
   "authors": [
     ""
   ],
-  "description": "A basic feedback overlay for question components",
+  "description": "An extension that reveals a hidden article when the user clicks on a button.",
   "main": "/js/adapt-article-reveal.js",
   "keywords": [
     "adapt-plugin",
