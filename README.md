@@ -5,7 +5,7 @@ Article reveal hides the article inner and prepends an element containing a butt
 
 To set up article reveal with the standard configuration use the JSON provided in the example.json file
 
-Configuration options are explained below the example JSON.
+Configuration options are explained below the example JSON. "_articleReveal" object is added to each required article object in article.json
 
 ```
 
