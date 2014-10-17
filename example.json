@@ -14,11 +14,8 @@
         "_left":50
     },
     "_ariaLabels": {
-        "openArticle": "",
-        "closeArticle": ""
-    },
-    "_ariaRegions": {
-        "articleReveal": ""
+        "openArticle": "Open Article. Select here to reveal article content. ",
+        "closeArticle": "Close Article"
     },
     "_backgroundImage":"",
     "_mobileBackgroundImage":""
