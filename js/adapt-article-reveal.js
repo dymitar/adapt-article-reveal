@@ -158,7 +158,7 @@ var ArticleRevealView = Backbone.View.extend({
             offset:{
                 top:-$('.navigation').height()
             }
-        });
+        }).resize();
     }
 
 });
