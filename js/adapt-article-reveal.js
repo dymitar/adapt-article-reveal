@@ -66,13 +66,14 @@ var ArticleRevealView = Backbone.View.extend({
         //animate Close..
         this.$(".article-reveal-close-button").fadeOut(500)
         var $articleInner = $("." + this.model.get("_id") + " > .article-inner ");
-
+	
+	var self = this;
         //..and set components to isVisible false
-        $articleInner.slideUp( 1000, _.bind(function() {
-            this.toggleisVisible( false );
-        }, this));
-
-        this.$(".article-reveal-open-button").focus();
+        $.Velocity.animate($articleInner, 'slideUp',{duration: 600 })
+        .then(function(){
+        	self.toggleisVisible( false );	
+		self.$(".article-reveal-open-button").focus();
+        })
     },
 
     revealArticle: function(event) {
@@ -84,17 +85,25 @@ var ArticleRevealView = Backbone.View.extend({
         this.$(".article-reveal-open-button").addClass('show');
 
         //animate reveal 
-        var $currentTarget = $("." + this.model.get("_id") + " .article-reveal-open-button");
-        var top = $currentTarget.offset().top - $(".navigation").height() - ($currentTarget.height());
-        $("html, body").animate({
-            scrollTop: top + "px" 
-        }, 1200);
-        var $articleInner = $("." + this.model.get("_id") + " > .article-inner " );
-        $articleInner.slideDown(1500);
-        this.$(".article-reveal-close-button").fadeIn(500);
+	var self = this;
+	var $articleInner = $("." + this.model.get("_id") + " > .article-inner " );
+	
+        Adapt.trigger("article:revealing", this);
 
-        // Call window resize to force components to rerender - fixes components that depend on being visible for setting up layout
-        $(window).resize();
+        $.Velocity.animate(this.$el, 'scroll', {
+            duration: 600, 
+            offset: this.$el.height()
+        })
+        .then(function(){
+            return $.Velocity.animate($articleInner, 'slideDown', 600);
+        })
+        .then(function(){
+            Adapt.trigger("article:revealed", self);
+            // Call window resize to force components to rerender - fixes components that depend on being visible for setting up layout
+            $(window).resize();
+        });
+        
+        //this.$(".article-reveal-close-button").fadeIn(500);
 
         //set components to isVisible true
         this.toggleisVisible(true);
