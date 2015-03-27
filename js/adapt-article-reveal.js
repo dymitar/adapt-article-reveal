@@ -95,12 +95,13 @@ var ArticleRevealView = Backbone.View.extend({
         this.$(".article-reveal-open-button").addClass('show');
 
         //animate reveal 
+        Adapt.trigger("article:revealing", this);
         this.$el.siblings(".article-inner").velocity("slideDown", 800, _.bind(function() {
             Adapt.trigger("article:revealed", this);
             // Call window resize to force components to rerender -
             // fixes components that depend on being visible for setting up layout
             $(window).resize();
-        }));
+        }, this));
         this.$el.velocity("scroll", {
             delay: 400,
             duration: 800,
