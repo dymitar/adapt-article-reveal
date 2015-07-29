@@ -36,8 +36,8 @@ var ArticleRevealView = Backbone.View.extend({
         }
         return this;
     },
-	
-	setup: function(event) {
+    
+    setup: function(event) {
         if (event) event.preventDefault();
         //prevent drag on buttons
         this.preventDrag();
@@ -70,7 +70,8 @@ var ArticleRevealView = Backbone.View.extend({
         if (event) event.preventDefault();
 
         //set article not showing in css
-        this.$(".article-reveal-open-button").removeClass('show');
+        this.$(".article-reveal-close-button").removeClass('show');
+        this.$(".article-reveal-open-button").removeClass('disabled');
 
         //animate Close..
         // this.$(".article-reveal-close-button").velocity("fadeOut", 500);
@@ -90,41 +91,43 @@ var ArticleRevealView = Backbone.View.extend({
         if (event) event.preventDefault();
         if(this.$el.closest(".article").hasClass("locked")) return; // in conjunction with pageLocking
 
-        //set article visited and article showing in css
-        this.$(".article-reveal-open-button").addClass('visited');
-        this.$(".article-reveal-open-button").addClass('show');
+        if (!this.$(".article-reveal-open-button").hasClass('disabled')) { // don't animate when disabled
+            //set article visited and article showing in css
+            this.$(".article-reveal-open-button").addClass('visited disabled'); // disable button when open
+            this.$(".article-reveal-close-button").addClass('show');
 
-        //animate reveal 
-        Adapt.trigger("article:revealing", this);
-        this.$el.siblings(".article-inner").velocity("slideDown", 800, _.bind(function() {
-            Adapt.trigger("article:revealed", this);
-            // Call window resize to force components to rerender -
-            // fixes components that depend on being visible for setting up layout
-            $(window).resize();
-        }, this));
-        this.$el.velocity("scroll", {
-            delay: 400,
-            duration: 800,
-            offset: this.$el.height() - $(".navigation").outerHeight()
-        });
-        // this.$(".article-reveal-close-button").velocity("fadeIn", {
-        //     delay: 400,
-        //     duration: 500
-        // });
+            //animate reveal 
+            Adapt.trigger("article:revealing", this);
+            this.$el.siblings(".article-inner").velocity("slideDown", 800, _.bind(function() {
+                Adapt.trigger("article:revealed", this);
+                // Call window resize to force components to rerender -
+                // fixes components that depend on being visible for setting up layout
+                $(window).resize();
+            }, this));
+            this.$el.velocity("scroll", {
+                delay: 400,
+                duration: 800,
+                offset: this.$el.height() - $(".navigation").outerHeight()
+            });
+            // this.$(".article-reveal-close-button").velocity("fadeIn", {
+            //     delay: 400,
+            //     duration: 500
+            // });
 
-        //set components to isVisible true
-        this.toggleisVisible(true);
+            //set components to isVisible true
+            this.toggleisVisible(true);
+        }
     },
 
     toggleisVisible: function(view) {
-  		var allComponents = this.model.findDescendants('components');
-  		  allComponents.each(function(component) {
-  				component.set({
+        var allComponents = this.model.findDescendants('components');
+          allComponents.each(function(component) {
+                component.set({
                     '_isVisible':view
                 },{
                     pluginName:"_articleReveal"
                 });
-  		  });
+          });
     },
     
     preventDrag: function() {
@@ -174,9 +177,3 @@ Adapt.on('articleView:postRender', function(view) {
 });
 
 });
-
-
-
-
-
-

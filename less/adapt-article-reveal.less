@@ -8,96 +8,111 @@
 	.article-reveal-inner {
 		position: relative;
 	}
-	
+
+  	/* Open button styling */
+
   	.article-reveal-open-button {
 		position: absolute;
 		display: block;
-		margin-left:-(@icon-size*2 + 30)/2;
-		text-decoration:none;
+		margin-left: -(@icon-size*2 + 30)/2;
+		text-decoration: none;
+
+		.article-reveal-open-button-icon {
+			width: auto;
+			height: auto;
+			padding: 15px;
+			color: @item-text-color;
+			background-color: @item-color;
+			border: 1px solid @item-border-color;
+			border-radius: 50%;
+			font-size: (@icon-size*2);
+		}
+
 		&.visited {
 		  	.article-reveal-open-button-icon {
-				color: @item-visited-color;
-		  	}
-		  	&:hover {
-				.article-reveal-open-button-icon {
-					background-color: @item-color;
-				}
-			}
-			&.show:hover {
-				.article-reveal-open-button-icon {
-					background-color: @item-color;
-					cursor:default;
-				}
+				color: @item-text-color-visited;
+				background-color: @item-color-visited;
+				border-color: @item-border-color-visited;
 		  	}
 		}
-		&:hover {
+
+	  	.no-touch &:hover {
 			.article-reveal-open-button-icon {
-				background-color: @item-hover-color;
+				color: @item-text-color-hover;
+				background-color: @item-color-hover;
+				border-color: @item-border-color-hover;
 			}
 		}
-	}
 
-  	/*Reveal button styling */
-  
-	.article-reveal-open-button-icon {
-		color: @item-color;
-		font-size: (@icon-size*2);
-		border: 1px solid @item-color;
-		border-radius:50%;
-		cursor: pointer;
-		width:auto;
-		height:auto;
-		padding:15px;
+		&.disabled {
+			cursor: none;
+			.article-reveal-open-button-icon {
+				color: @item-text-color-disabled;
+				background-color: @item-color-disabled;
+				border-color: @item-border-color-disabled;
+			}
+		  	.no-touch &:hover {
+				.article-reveal-open-button-icon {
+					color: @item-text-color-disabled;
+					background-color: @item-color-disabled;
+					border-color: @item-border-color-disabled;
+				}
+			}
+	  	}
 	}
   
-
 	.article-reveal-open-button-text {
+		display: block;
 		color: @item-color;
 		text-decoration:none;
 		text-align: center;
-		display: block;
 	}
   
-  	/*Close button styling */
+  	/* Close button styling */
 
    	.article-reveal-close-button {
 	    position: absolute;
 	    display: block;
-	    background-color: #fff;
-	    border: 1px solid @item-color;
-	    border-radius:50%;
 		text-decoration:none;
 		cursor: pointer;
-		&:hover {
-			background-color: @item-hover-color;
-		}
 	}
   
-  
   	.article-reveal-close-button {
-    	z-index: 1;
 	  	display:none;
 	  	bottom:-45px; 
 	  	right:75px;
+	    z-index: 1;
+	  	.no-touch &:hover {
+			.article-reveal-close-button-icon {
+				color: @item-text-color-hover;
+				background-color: @item-color-hover;
+				border-color: @item-border-color-hover;
+			}
+		}
+
+	  	&.show {
+	  		display: block;
+	  	}
   	}
   
-  
   	.article-reveal-close-button-icon {
-	    float:left;
-	    color: @item-color;
-	    font-size: (@icon-size*1);
-	    width:auto;
+  		width:auto;
 	    height:auto;
+	    float:left;
+		color: @item-text-color;
+	    background-color: @item-color;
+		border: 1px solid @item-border-color;
+		border-radius: 50%;
+	    font-size: (@icon-size*1);
 	}
   
   	.article-reveal-close-button-text {
 		position:absolute;
 		float:left;
+		width:auto;
+		padding-left:5px;
 		color: @item-color;
 		text-decoration:none;
-		width:auto;
 		text-align: center;
-		padding-left:5px;
 	}
-  
 }
