@@ -138,6 +138,7 @@ var ArticleRevealView = Backbone.View.extend({
 
     // Handles the Adapt page scrollTo event
     onProgressBarScrollTo: function(componentSelector) { 
+    	if (typeof componentSelector == "object") componentSelector = componentSelector.selector;
         var allComponents = this.model.findDescendants('components');
         var componentID = componentSelector;
         if(componentID.indexOf('.') === 0) componentID = componentID.slice(1);
