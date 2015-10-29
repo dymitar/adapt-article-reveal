@@ -10,6 +10,7 @@ Configuration options are explained below the example JSON. "_articleReveal" obj
 ```
 
 "_articleReveal":{
+    "_isEnabled": true,
     "_classes": "",
     "_height":300,
     "_mobileHeight":200,
@@ -38,11 +39,17 @@ Configuration options are explained below the example JSON. "_articleReveal" obj
 
 ###Config Options
 
+####Enabled
+
+```
+_isEnabled: true
+```
+Whether to enable the reveal functionality on a given article. Can also omit the `_articleReveal` config object completely.
+
 ####Classes
 
 ```
 "_classes": "",
-
 ```
 
 Adds classes to the article reveal element. Use for bespoke styling.
