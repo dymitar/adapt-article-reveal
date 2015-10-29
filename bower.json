@@ -1,12 +1,20 @@
 {
   "name": "adapt-article-reveal",
   "version": "0.0.1",
+  "framework": "^2.0.0",
   "homepage": "https://github.com/cgkineo/adapt-article-reveal",
   "authors": [
-    ""
+    "Gavin McMaster",
+    "Guy Willis",
+    "Matt Leathes",
+    "Oliver Foster",
+    "Tom Greenfield"
   ],
+  "displayName": "Article Reveal",
   "description": "An extension that reveals a hidden article when the user clicks on a button.",
   "main": "/js/adapt-article-reveal.js",
+  "extension" : "article-reveal",
+  "targetAttribute" : "_articleReveal",
   "keywords": [
     "adapt-plugin",
     "adapt-extension"

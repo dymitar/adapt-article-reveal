@@ -1,0 +1,207 @@
+{
+  "type":"object",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "id": "http://jsonschema.net",
+  "required":false,
+  "properties":{
+    "pluginLocations": {
+      "type":"object",
+      "required":true,
+      "properties": {
+        "config": {
+          "type":"object"
+        },
+        "course": {
+          "type":"object"
+        },
+        "contentobject": {
+          "type":"object"
+        },
+        "article": {
+          "type":"object",
+          "properties": {
+            "_articleReveal": {
+              "type":"object",
+              "required":false,
+              "legend": "Article Reveal",
+              "properties":{
+                "_classes": {
+                  "type":"string",
+                  "required": false,
+                  "default": "",
+                  "title": "Classes",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "Apply custom CSS classes here"
+                },
+                "_height": {
+                  "type":"number",
+                  "required":false,
+                  "default":300,
+                  "title": "Height",
+                  "inputType": "Number",
+                  "validators": ["number"],
+                  "help": "The height of the element containing the reveal button (large viewport)."
+                },
+                "_mobileHeight": {
+                  "type":"number",
+                  "required":false,
+                  "default":200,
+                  "title": "Mobile height",
+                  "inputType": "Number",
+                  "validators": ["number"],
+                  "help": "The height of the element containing the reveal button (mobile viewport)."
+                },
+                "_icon-text": {
+                  "type":"string",
+                  "required": false,
+                  "default": "REVEAL",
+                  "title": "Reveal button text",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "Text label for the reveal button."
+                },
+                "_closeButtonText": {
+                  "type":"string",
+                  "required": false,
+                  "default": "CLOSE",
+                  "title": "Close button text",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "Text label for the article's close button."
+                },
+                "_triggerPosition": {
+                  "type":"object",
+                  "required":false,
+                  "title": "Reveal button position",
+                  "help": "The position of the reveal button as a percentage (large viewport).",
+                  "properties": {
+                    "_top": {
+                      "type":"number",
+                      "required":false,
+                      "default":30,
+                      "title": "Top",
+                      "inputType": "Number",
+                      "validators": ["number"],
+                      "help": "The top position of the reveal button."
+                    },
+                    "_left": {
+                      "type":"number",
+                      "required":false,
+                      "default":50,
+                      "title": "Left",
+                      "inputType": "Number",
+                      "validators": ["number"],
+                      "help": "The left position of the reveal button."
+                    }
+                  }
+                },
+                "_mobileTriggerPosition": {
+                  "type":"object",
+                  "required":false,
+                  "title": "Reveal button position (mobile)",
+                  "help": "The position of the reveal button as a percentage (mobile viewport).",
+                  "properties": {
+                    "_top": {
+                      "type":"number",
+                      "required":false,
+                      "default":30,
+                      "title": "Top",
+                      "inputType": "Number",
+                      "validators": ["number"],
+                      "help": "The top position of the reveal button."
+                    },
+                    "_left": {
+                      "type":"number",
+                      "required":false,
+                      "default":50,
+                      "title": "Left",
+                      "inputType": "Number",
+                      "validators": ["number"],
+                      "help": "The left position of the reveal button."
+                    }
+                  }
+                },
+                "_ariaLabels": {
+                  "type":"object",
+                  "required":false,
+                  "title": "ARIA labels",
+                  "help": "Labels read by screen reader software.",
+                  "properties": {
+                    "openArticle": {
+                      "type":"string",
+                      "required": false,
+                      "default": "",
+                      "title": "Open article",
+                      "inputType": "Text",
+                      "validators": [],
+                      "help": "Screen reader text for opening the article."
+                    },
+                    "closeArticle": {
+                      "type":"string",
+                      "required": false,
+                      "default": "",
+                      "title": "Close article",
+                      "inputType": "Text",
+                      "validators": [],
+                      "help": "Screen reader text for closing the article."
+                    }
+                  }
+                },
+                "_ariaRegions": {
+                  "type":"object",
+                  "required":false,
+                  "title": "ARIA regions",
+                  "help": "Region labels read by screen reader software.",
+                  "properties": {
+                    "articleReveal": {
+                      "type":"string",
+                      "required": false,
+                      "default": "",
+                      "title": "Article reveal",
+                      "inputType": "Text",
+                      "validators": [],
+                      "help": "Screen reader text label for article reveal region."
+                    }
+                  }
+                },
+                "_backgroundImage": {
+                  "type":"string",
+                  "required": false,
+                  "default": "",
+                  "title": "Background image",
+                  "inputType": "Asset:image",
+                  "validators": [],
+                  "help": "Background image for the reveal button (large viewport)."
+                },
+                "_mobileBackgroundImage": {
+                  "type":"string",
+                  "required": false,
+                  "default": "",
+                  "title": "Background image (mobile)",
+                  "inputType": "Asset:image",
+                  "validators": [],
+                  "help": "Background image for the reveal button (mobile viewport)."
+                },
+                "_isEnabled": {
+                  "type":"boolean",
+                  "required":true,
+                  "default": false,
+                  "title": "Enable article reveal",
+                  "inputType": { "type": "Boolean", "options": [false, true]},
+                  "validators": []
+                }
+              }
+            }
+          }
+        },
+        "block": {
+          "type":"object"
+        },
+        "component": {
+          "type":"object"
+        }
+      }
+    }
+  }
+}

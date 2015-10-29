@@ -167,10 +167,11 @@ var ArticleRevealView = Backbone.View.extend({
 });
 
 Adapt.on('articleView:postRender', function(view) {
-    if (view.model.get("_articleReveal")) {
-        new ArticleRevealView({
-            model:view.model
-        });
+    var revealModel = view.model.get("_articleReveal");
+    if (revealModel && revealModel._isEnabled) {
+        new ArticleRevealView({ model: view.model });
+    } else {
+        console.log("Not enabling article-reveal for ", view.model.get("_id"));
     }
 });
 
