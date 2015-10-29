@@ -60,7 +60,6 @@ Adds classes to the article reveal element. Use for bespoke styling.
 ```
 "_height":200,
 "_mobileHeight":100,
-
 ```
 Set the height of the element containing the button. Different heights can be set for large and small viewports.
 
@@ -75,7 +74,6 @@ Set the height of the element containing the button. Different heights can be se
     "_top":30,
     "_left":20
 },
-
 ```
 Set position of the reveal button, the position is set using percentages. Different positions can be set for large and small viewports.
 
@@ -89,7 +87,6 @@ Set position of the reveal button, the position is set using percentages. Differ
 "_ariaRegions": {
     "articleReveal": ""
 },
-
 ```
 Aria configuration options.
 
@@ -98,9 +95,6 @@ Aria configuration options.
 ```
 "_backgroundImage":"image.png",
 "_mobileBackgroundImage":"mobile-image.png"
-
 ```
 
 Background images can be set on the element that conatins the button. Different images can be set for large and small viewports.
-
-
