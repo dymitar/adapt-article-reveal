@@ -36,7 +36,7 @@ var ArticleRevealView = Backbone.View.extend({
         }
         return this;
     },
-	
+
 	setup: function(event) {
         if (event) event.preventDefault();
         //prevent drag on buttons
@@ -65,7 +65,7 @@ var ArticleRevealView = Backbone.View.extend({
         }
         this.render();
     },
-    
+
     closeArticle: function(event) {
         if (event) event.preventDefault();
 
@@ -94,7 +94,7 @@ var ArticleRevealView = Backbone.View.extend({
         this.$(".article-reveal-open-button").addClass('visited');
         this.$(".article-reveal-open-button").addClass('show');
 
-        //animate reveal 
+        //animate reveal
         Adapt.trigger("article:revealing", this);
         this.$el.siblings(".article-inner").velocity("slideDown", 800, _.bind(function() {
             Adapt.trigger("article:revealed", this);
@@ -126,18 +126,18 @@ var ArticleRevealView = Backbone.View.extend({
                 });
   		  });
     },
-    
+
     preventDrag: function() {
-        $(".article-reveal-open-button").on("dragstart", function(event) { 
-            event.preventDefault(); 
+        $(".article-reveal-open-button").on("dragstart", function(event) {
+            event.preventDefault();
         });
-        $(".article-reveal-close-button").on("dragstart", function(event) { 
-            event.preventDefault(); 
+        $(".article-reveal-close-button").on("dragstart", function(event) {
+            event.preventDefault();
         });
     },
 
     // Handles the Adapt page scrollTo event
-    onProgressBarScrollTo: function(componentSelector) { 
+    onProgressBarScrollTo: function(componentSelector) {
     	if (typeof componentSelector == "object") componentSelector = componentSelector.selector;
         var allComponents = this.model.findDescendants('components');
         var componentID = componentSelector;
@@ -153,7 +153,7 @@ var ArticleRevealView = Backbone.View.extend({
     revealComponent: function(componentSelector) {
         this.$(".article-reveal-open-button").addClass('visited');
         this.$(".article-reveal-open-button").addClass('show');
-        
+
         this.toggleisVisible(true);
         $("." + this.model.get("_id") + " > .article-inner ").slideDown(0);
         this.$(".article-reveal-close-button").fadeIn(1);
@@ -176,9 +176,3 @@ Adapt.on('articleView:postRender', function(view) {
 });
 
 });
-
-
-
-
-
-
