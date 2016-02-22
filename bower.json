@@ -6,7 +6,7 @@
     "homepage": "https://github.com/cgkineo/adapt-article-reveal",
     "issues": "https://github.com/cgkineo/adapt-article-reveal/issues/",
     "displayName": "Article Reveal",
-    "component": "articleReveal",
+    "extension": "article-reveal",
     "description": "An extension that reveals a hidden article when the user clicks on a button.",
     "main": "/js/adapt-article-reveal.js",
     "keywords": [
