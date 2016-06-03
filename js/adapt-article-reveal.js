@@ -117,14 +117,13 @@ var ArticleRevealView = Backbone.View.extend({
     },
 
     toggleisVisible: function(view) {
-  		var allComponents = this.model.findDescendants('components');
-  		  allComponents.each(function(component) {
-  				component.set({
-                    '_isVisible':view
-                },{
-                    pluginName:"_articleReveal"
-                });
-  		  });
+        var allComponents = this.model.findDescendants('components');
+        allComponents.each(function(component) {
+            component.setLocking("_isVisible", false);
+            component.set('_isVisible', view, {
+                pluginName:"_articleReveal"
+            });
+        });
     },
     
     preventDrag: function() {
