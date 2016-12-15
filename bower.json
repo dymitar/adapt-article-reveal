@@ -2,7 +2,7 @@
     "name": "adapt-article-reveal",
     "repository": "git://github.com/cgkineo/adapt-article-reveal",
     "framework": "^2.0.0",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "homepage": "https://github.com/cgkineo/adapt-article-reveal",
     "issues": "https://github.com/cgkineo/adapt-article-reveal/issues/",
     "displayName": "Article Reveal",
@@ -13,5 +13,6 @@
         "adapt-plugin",
         "adapt-extension"
     ],
-    "license": "GPLv3"
+    "license": "GPLv3",
+    "targetAttribute": "_articleReveal"
 }

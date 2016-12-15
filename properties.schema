@@ -35,7 +35,7 @@
                 "_height": {
                   "type":"number",
                   "required":true,
-                  "title": "Set the element height for large viewport",
+                  "title": "Set the element height for large device",
                   "inputType": "Number",
                   "default": 300,
                   "validators": ["number"],
@@ -52,7 +52,7 @@
                 },
                 "_icon-text": {
                   "type":"string",
-                  "required":false,
+                  "required":true,
                   "default": "REVEAL",
                   "title": "Open Icon Text",
                   "inputType": "Text",
@@ -123,7 +123,7 @@
                 "_ariaLabels": {
                   "type":"object",
                   "title": "Aria Labels",
-                  "required":false,
+                  "required":true,
                   "properties":{
                     "openArticle": {
                       "type":"string",
