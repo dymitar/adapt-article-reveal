@@ -48,40 +48,40 @@
                   "inputType": "Number",
                   "default": 300,
                   "validators": ["number"],
-                  "help": "This minimum height of the element containing the button on large devices."
+                  "help": "The minimum height of the element containing the reveal button on large device."
                 },
                 "_mobileHeight": {
                   "type":"number",
                   "required":true,
-                  "title": "Set the element height for small viewport",
+                  "title": "Set the element height for small device",
                   "inputType": "Number",
                   "default": 100,
                   "validators": ["number"],
-                  "help": "This minimum height of the element containing the button on small devices."
+                  "help": "The minimum height of the element containing the button on small devices."
                 },
                 "_icon-text": {
                   "type":"string",
                   "required":true,
                   "default": "REVEAL",
-                  "title": "Open Icon Text",
+                  "title": "Reveal button Text",
                   "inputType": "Text",
                   "validators": [],
-                  "help": "Icon text for the open button to reveal the article",
+                  "help": "The icon text for the reveal button.",
                   "translatable": true
                 },
                 "_closeButtonText": {
                   "type":"string",
                   "required":false,
-                  "default": "Close",
-                  "title": "Closed Button text",
+                  "default": "CLOSE",
+                  "title": "Close Button text",
                   "inputType": "Text",
                   "validators": [],
-                  "help": "Icon text for the close button to hide the article",
+                  "help": "The icon text for the close button",
                   "translatable": true
                 },
                 "_triggerPosition": {
                   "type":"object",
-                  "title": "Set Trigger Button Position",
+                  "title": "Set Reveal Button Position on large device",
                   "required":true,
                   "properties":{
                     "_top": {
@@ -91,7 +91,7 @@
                       "title": "Set reveal button position from top",
                       "inputType": "Number",
                       "validators": ["number"],
-                      "help": "Set position of the reveal button, the position is set using percentage."
+                      "help": "The position is set using percentage."
                     },
                     "_left": {
                       "type":"number",
@@ -100,13 +100,13 @@
                       "title": "Set reveal button position from left",
                       "inputType": "Number",
                       "validators": ["number"],
-                      "help": "Set position of the reveal button, the position is set using percentage."
+                      "help": "The position is set using percentage."
                     }
                   }
                 },
                 "_mobileTriggerPosition": {
                   "type":"object",
-                  "title": "Set Trigger Button Position on Small Device",
+                  "title": "Set Reveal Button Position on Small Device",
                   "required":true,
                   "properties":{
                     "_top": {
@@ -116,7 +116,7 @@
                       "title": "Set reveal button position from top",
                       "inputType": "Number",
                       "validators": ["number"],
-                      "help": "Set position of the reveal button on small device, the position is set using percentage."
+                      "help": "The position is set using percentage."
                     },
                     "_left": {
                       "type":"number",
@@ -125,7 +125,7 @@
                       "title": "Set reveal button position from left",
                       "inputType": "Number",
                       "validators": ["number"],
-                      "help": "Set position of the reveal button on small device, the position is set using percentage."
+                      "help": "The position is set using percentage."
                     }
                   }
                 },
@@ -160,7 +160,8 @@
                   "default": "",
                   "title": "Background Image",
                   "inputType": "Asset:image",
-                  "validators": []
+                  "validators": [],
+                  "help": "Set background image for the element that contains the reveal button."
                 },
                 "_mobileBackgroundImage": {
                   "type":"string",
@@ -168,7 +169,8 @@
                   "default": "",
                   "title": "Background Image on Mobile Device",
                   "inputType": "Asset:image",
-                  "validators": []
+                  "validators": [],
+                  "help": "Set background image for the element that contains the reveal button."
                 }
               }
             }
