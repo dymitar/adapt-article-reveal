@@ -1,0 +1,177 @@
+{
+  "type":"object",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "id": "http://jsonschema.net",
+  "required":false,
+  "properties":{
+    "pluginLocations": {
+      "type":"object",
+      "required":true,
+      "properties":{
+        "config": {
+          "type":"object"
+        },
+        "course": {
+          "type":"object"
+        },
+        "contentobject": {
+          "type":"object"
+        },
+        "article": {
+          "type":"object",
+          "properties":{
+            "_articleReveal": {
+              "type":"object",
+              "required":false,
+              "legend": "Article Reveal",
+              "properties":{
+                "_classes": {
+                  "type": "string",
+                  "required": false,
+                  "title": "Classes",
+                  "inputType": "Text",
+                  "validators": []
+                },
+                "_height": {
+                  "type":"number",
+                  "required":true,
+                  "title": "Set the element height for large viewport",
+                  "inputType": "Number",
+                  "default": 300,
+                  "validators": ["number"],
+                  "help": "This minimum height of the element containing the button on large devices."
+                },
+                "_mobileHeight": {
+                  "type":"number",
+                  "required":true,
+                  "title": "Set the element height for small viewport",
+                  "inputType": "Number",
+                  "default": 100,
+                  "validators": ["number"],
+                  "help": "This minimum height of the element containing the button on small devices."
+                },
+                "_icon-text": {
+                  "type":"string",
+                  "required":false,
+                  "default": "REVEAL",
+                  "title": "Open Icon Text",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "Icon text for the open button to reveal the article",
+                  "translatable": true
+                },
+                "_closeButtonText": {
+                  "type":"string",
+                  "required":false,
+                  "default": "Close",
+                  "title": "Closed Button text",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "Icon text for the close button to hide the article",
+                  "translatable": true
+                },
+                "_triggerPosition": {
+                  "type":"object",
+                  "title": "Set Trigger Button Position",
+                  "required":true,
+                  "properties":{
+                    "_top": {
+                      "type":"number",
+                      "required":true,
+                      "default": 30,
+                      "title": "Set reveal button position from top",
+                      "inputType": "Number",
+                      "validators": ["number"],
+                      "help": "Set position of the reveal button, the position is set using percentage."
+                    },
+                    "_left": {
+                      "type":"number",
+                      "required":true,
+                      "default": 50,
+                      "title": "Set reveal button position from left",
+                      "inputType": "Number",
+                      "validators": ["number"],
+                      "help": "Set position of the reveal button, the position is set using percentage."
+                    }
+                  }
+                },
+                "_mobileTriggerPosition": {
+                  "type":"object",
+                  "title": "Set Trigger Button Position on Small Device",
+                  "required":true,
+                  "properties":{
+                    "_top": {
+                      "type":"number",
+                      "required":true,
+                      "default": 30,
+                      "title": "Set reveal button position from top",
+                      "inputType": "Number",
+                      "validators": ["number"],
+                      "help": "Set position of the reveal button on small device, the position is set using percentage."
+                    },
+                    "_left": {
+                      "type":"number",
+                      "required":true,
+                      "default": 50,
+                      "title": "Set reveal button position from left",
+                      "inputType": "Number",
+                      "validators": ["number"],
+                      "help": "Set position of the reveal button on small device, the position is set using percentage."
+                    }
+                  }
+                },
+                "_ariaLabels": {
+                  "type":"object",
+                  "title": "Aria Labels",
+                  "required":false,
+                  "properties":{
+                    "openArticle": {
+                      "type":"string",
+                      "required":false,
+                      "default": "Open Article. Select here to reveal article content.",
+                      "title": "Open Button Aria Label",
+                      "inputType": "Text",
+                      "validators": [],
+                      "translatable": true
+                    },
+                    "closeArticle": {
+                      "type":"string",
+                      "required":false,
+                      "default": "Close Article",
+                      "title": "Close Button Aria Label",
+                      "inputType": "Text",
+                      "validators": [],
+                      "translatable": true
+                    }
+                  }
+                },
+                "_backgroundImage": {
+                  "type":"string",
+                  "required":true,
+                  "default": "",
+                  "title": "Background Image",
+                  "inputType": "Asset:image",
+                  "validators": []
+                },
+                "_mobileBackgroundImage": {
+                  "type":"string",
+                  "required":true,
+                  "default": "",
+                  "title": "Background Image on Mobile Device",
+                  "inputType": "Asset:image",
+                  "validators": []
+                }
+              }
+            }
+          }
+        },
+        "block": {
+          "type":"object"
+        },
+        "component": {
+          "type":"object"
+        }
+      }
+    }
+  }
+}
