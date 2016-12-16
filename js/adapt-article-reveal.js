@@ -5,7 +5,7 @@
 */
 define([
     'core/js/adapt'
-], function(Adapt) {   
+], function(Adapt) {
 
     var ArticleRevealView = Backbone.View.extend({
 
@@ -17,24 +17,26 @@ define([
         },
 
         initialize: function () {
-            this.render();
-            this.setup();
-            this.listenTo(Adapt, "remove", this.remove);
-            this.listenTo(Adapt, 'device:changed', this.setDeviceSize);
-            Adapt.on("page:scrollTo", _.bind(this.onProgressBarScrollTo, this));
+			if (this.model.get('_articleReveal') && this.model.get('_articleReveal')._isEnabled) {
+				this.render();
+				this.setup();
+				this.listenTo(Adapt, "remove", this.remove);
+				this.listenTo(Adapt, 'device:changed', this.setDeviceSize);
+				Adapt.on("page:scrollTo", _.bind(this.onProgressBarScrollTo, this));
+			}
         },
 
         render: function () {
             var data = this.model.toJSON();
             var template = Handlebars.templates["adapt-article-reveal"];
             $(this.el).html(template(data)).prependTo('.' + this.model.get("_id"));
-            
+
             var incomplete = this.model.findDescendants("components").where({_isComplete:false});
             if (incomplete.length === 0) this.setOpenButtonState();
 
             return this;
         },
-        
+
         setup: function(event) {
             if (event) event.preventDefault();
             //prevent drag on buttons
@@ -71,7 +73,7 @@ define([
         setClosedButtonState: function() {
             this.$(".article-reveal-open-button").removeClass('show');
         },
-        
+
         closeArticle: function(event) {
             if (event) event.preventDefault();
 
@@ -97,7 +99,7 @@ define([
 
             this.setOpenButtonState();
 
-            //animate reveal 
+            //animate reveal
             Adapt.trigger("article:revealing", this);
             this.$el.siblings(".article-inner").velocity("slideDown", 800, _.bind(function() {
                 Adapt.trigger("article:revealed", this);
@@ -131,18 +133,18 @@ define([
                 });
             });
         },
-        
+
         preventDrag: function() {
-            $(".article-reveal-open-button").on("dragstart", function(event) { 
-                event.preventDefault(); 
+            $(".article-reveal-open-button").on("dragstart", function(event) {
+                event.preventDefault();
             });
-            $(".article-reveal-close-button").on("dragstart", function(event) { 
-                event.preventDefault(); 
+            $(".article-reveal-close-button").on("dragstart", function(event) {
+                event.preventDefault();
             });
         },
 
         // Handles the Adapt page scrollTo event
-        onProgressBarScrollTo: function(componentSelector) { 
+        onProgressBarScrollTo: function(componentSelector) {
             if (typeof componentSelector == "object") componentSelector = componentSelector.selector;
             var allComponents = this.model.findDescendants('components');
             var componentID = componentSelector;
@@ -157,13 +159,13 @@ define([
 
         revealComponent: function(componentSelector) {
             this.setOpenButtonState();
-            
+
             this.toggleisVisible(true);
 
             $("." + this.model.get("_id") + " > .article-inner ").slideDown(0);
 
             this.$(".article-reveal-close-button").fadeIn(1);
-            
+
             $(window).scrollTo($(componentSelector), {
                 offset:{
                     top:-$('.navigation').height()
