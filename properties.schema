@@ -32,7 +32,7 @@
                     "title": "Article Reveal Enable",
                     "inputType": {"type": "Boolean", "options": [true, false]},
                     "validators": [],
-                    "help": "Enable the article reveal extenstion for this article."
+                    "help": "Enable the article reveal extension for this article."
                 },
                 "_classes": {
                   "type": "string",
