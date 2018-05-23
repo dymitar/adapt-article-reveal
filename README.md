@@ -36,9 +36,9 @@ Configuration options are explained below the example JSON. "_articleReveal" obj
 
 ```
 
-###Config Options
+### Config Options
 
-####Classes
+#### Classes
 
 ```
 "_classes": "",
@@ -48,7 +48,7 @@ Configuration options are explained below the example JSON. "_articleReveal" obj
 Adds classes to the article reveal element. Use for bespoke styling.
 
 
-####Height
+#### Height
 
 ```
 "_height":200,
@@ -57,7 +57,7 @@ Adds classes to the article reveal element. Use for bespoke styling.
 ```
 Set the height of the element containing the button. Different heights can be set for large and small viewports.
 
-####Trigger(button) position
+#### Trigger(button) position
 
 ```
 "_triggerPosition": {
@@ -72,7 +72,7 @@ Set the height of the element containing the button. Different heights can be se
 ```
 Set position of the reveal button, the position is set using percentages. Different positions can be set for large and small viewports.
 
-####Accessibility
+#### Accessibility
 
 ```
 "_ariaLabels": {
@@ -86,7 +86,7 @@ Set position of the reveal button, the position is set using percentages. Differ
 ```
 Aria configuration options.
 
-####Background images
+#### Background images
 
 ```
 "_backgroundImage":"image.png",
