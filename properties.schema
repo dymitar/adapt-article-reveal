@@ -1,38 +1,38 @@
 {
-  "type":"object",
+  "type": "object",
   "$schema": "http://json-schema.org/draft-03/schema",
   "id": "http://jsonschema.net",
-  "required":false,
-  "properties":{
+  "required": false,
+  "properties": {
     "pluginLocations": {
-      "type":"object",
-      "required":true,
-      "properties":{
+      "type": "object",
+      "required": true,
+      "properties": {
         "config": {
-          "type":"object"
+          "type": "object"
         },
         "course": {
-          "type":"object"
+          "type": "object"
         },
         "contentobject": {
-          "type":"object"
+          "type": "object"
         },
         "article": {
-          "type":"object",
-          "properties":{
+          "type": "object",
+          "properties": {
             "_articleReveal": {
-              "type":"object",
-              "required":false,
+              "type": "object",
+              "required": false,
               "legend": "Article Reveal",
-              "properties":{
+              "properties": {
                 "_isEnabled": {
-                    "type": "boolean",
-                    "required": false,
-                    "default": false,
-                    "title": "Article Reveal Enable",
-                    "inputType": {"type": "Boolean", "options": [true, false]},
-                    "validators": [],
-                    "help": "Turns the Article Reveal extension on and off."
+                  "type": "boolean",
+                  "required": false,
+                  "default": false,
+                  "title": "Article Reveal Enable",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Turns the Article Reveal extension on and off."
                 },
                 "_classes": {
                   "type": "string",
@@ -42,8 +42,8 @@
                   "validators": []
                 },
                 "_height": {
-                  "type":"number",
-                  "required":true,
+                  "type": "number",
+                  "required": true,
                   "title": "Set the element height for large device",
                   "inputType": "Number",
                   "default": 300,
@@ -51,8 +51,8 @@
                   "help": "The minimum height of the element containing the reveal button on large device."
                 },
                 "_mobileHeight": {
-                  "type":"number",
-                  "required":true,
+                  "type": "number",
+                  "required": true,
                   "title": "Set the element height for small device",
                   "inputType": "Number",
                   "default": 100,
@@ -60,8 +60,8 @@
                   "help": "The minimum height of the element containing the button on small devices."
                 },
                 "_icon-text": {
-                  "type":"string",
-                  "required":true,
+                  "type": "string",
+                  "required": true,
                   "default": "REVEAL",
                   "title": "Reveal button Text",
                   "inputType": "Text",
@@ -70,8 +70,8 @@
                   "translatable": true
                 },
                 "_closeButtonText": {
-                  "type":"string",
-                  "required":false,
+                  "type": "string",
+                  "required": false,
                   "default": "CLOSE",
                   "title": "Close Button text",
                   "inputType": "Text",
@@ -80,13 +80,13 @@
                   "translatable": true
                 },
                 "_triggerPosition": {
-                  "type":"object",
+                  "type": "object",
                   "title": "Set Reveal Button Position on large device",
-                  "required":true,
-                  "properties":{
+                  "required": true,
+                  "properties": {
                     "_top": {
-                      "type":"number",
-                      "required":true,
+                      "type": "number",
+                      "required": true,
                       "default": 30,
                       "title": "Set reveal button position from top",
                       "inputType": "Number",
@@ -94,8 +94,8 @@
                       "help": "The position is set using percentage."
                     },
                     "_left": {
-                      "type":"number",
-                      "required":true,
+                      "type": "number",
+                      "required": true,
                       "default": 50,
                       "title": "Set reveal button position from left",
                       "inputType": "Number",
@@ -105,13 +105,13 @@
                   }
                 },
                 "_mobileTriggerPosition": {
-                  "type":"object",
+                  "type": "object",
                   "title": "Set Reveal Button Position on Small Device",
-                  "required":true,
-                  "properties":{
+                  "required": true,
+                  "properties": {
                     "_top": {
-                      "type":"number",
-                      "required":true,
+                      "type": "number",
+                      "required": true,
                       "default": 30,
                       "title": "Set reveal button position from top",
                       "inputType": "Number",
@@ -119,8 +119,8 @@
                       "help": "The position is set using percentage."
                     },
                     "_left": {
-                      "type":"number",
-                      "required":true,
+                      "type": "number",
+                      "required": true,
                       "default": 50,
                       "title": "Set reveal button position from left",
                       "inputType": "Number",
@@ -130,13 +130,13 @@
                   }
                 },
                 "_ariaLabels": {
-                  "type":"object",
+                  "type": "object",
                   "title": "Aria Labels",
-                  "required":true,
-                  "properties":{
+                  "required": true,
+                  "properties": {
                     "openArticle": {
-                      "type":"string",
-                      "required":false,
+                      "type": "string",
+                      "required": false,
                       "default": "Open Article. Select here to reveal article content.",
                       "title": "Open Button Aria Label",
                       "inputType": "Text",
@@ -144,8 +144,8 @@
                       "translatable": true
                     },
                     "closeArticle": {
-                      "type":"string",
-                      "required":false,
+                      "type": "string",
+                      "required": false,
                       "default": "Close Article",
                       "title": "Close Button Aria Label",
                       "inputType": "Text",
@@ -155,8 +155,8 @@
                   }
                 },
                 "_backgroundImage": {
-                  "type":"string",
-                  "required":true,
+                  "type": "string",
+                  "required": true,
                   "default": "",
                   "title": "Background Image",
                   "inputType": "Asset:image",
@@ -164,8 +164,8 @@
                   "help": "Set background image for the element that contains the reveal button."
                 },
                 "_mobileBackgroundImage": {
-                  "type":"string",
-                  "required":true,
+                  "type": "string",
+                  "required": true,
                   "default": "",
                   "title": "Background Image on Mobile Device",
                   "inputType": "Asset:image",
@@ -177,10 +177,10 @@
           }
         },
         "block": {
-          "type":"object"
+          "type": "object"
         },
         "component": {
-          "type":"object"
+          "type": "object"
         }
       }
     }

@@ -1,8 +1,11 @@
 {
     "name": "adapt-article-reveal",
-    "repository": "git://github.com/cgkineo/adapt-article-reveal",
-    "framework": "^2.0.0",
-    "version": "2.0.4",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/cgkineo/adapt-article-reveal"
+    },
+    "framework": ">=2.2",
+    "version": "2.0.5",
     "homepage": "https://github.com/cgkineo/adapt-article-reveal",
     "issues": "https://github.com/cgkineo/adapt-article-reveal/issues/",
     "displayName": "Article Reveal",

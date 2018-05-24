@@ -1,18 +1,18 @@
 // in the required article object(s) in article.json
-"_articleReveal":{
+"_articleReveal": {
     "_isEnabled": false,
     "_classes": "",
-    "_height":300,
-    "_mobileHeight":200,
+    "_height": 300,
+    "_mobileHeight": 200,
     "_icon-text": "REVEAL",
     "_closeButtonText": "CLOSE",
     "_triggerPosition": {
-        "_top":30,
-        "_left":50
+        "_top": 30,
+        "_left": 50
     },
     "_mobileTriggerPosition": {
-        "_top":30,
-        "_left":50
+        "_top": 30,
+        "_left": 50
     },
     "_ariaLabels": {
         "openArticle": "Open Article. Select here to reveal article content. ",

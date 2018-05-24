@@ -9,50 +9,47 @@ define([
 
     var ArticleRevealView = Backbone.View.extend({
 
-        className: "article-reveal",
+        className: 'article-reveal',
 
         events: {
-            "click .article-reveal-open-button":"revealArticle",
-            "click .article-reveal-close-button":"closeArticle"
+            'click .article-reveal-open-button': 'revealArticle',
+            'click .article-reveal-close-button': 'closeArticle',
+            'dragstart .article-reveal-open-button': 'preventDrag',
+            'dragstart .article-reveal-close-button': 'preventDrag'
         },
 
         initialize: function () {
-			if (this.model.get('_articleReveal') && this.model.get('_articleReveal')._isEnabled) {
-				this.render();
-				this.setup();
-				this.listenTo(Adapt, "remove", this.remove);
-				this.listenTo(Adapt, 'device:changed', this.setDeviceSize);
-				Adapt.on("page:scrollTo", _.bind(this.onProgressBarScrollTo, this));
-			}
+            var cfg = this.model.get('_articleReveal');
+            if (cfg && cfg._isEnabled) {
+                this.render();
+                this.setup();
+                this.setDeviceSize();
+                this.listenTo(Adapt, {
+                    'remove': this.remove,
+                    'device:changed': this.setDeviceSize,
+                    'page:scrollTo': this.onProgressBarScrollTo
+                });
+            }
         },
 
         render: function () {
             var data = this.model.toJSON();
-            var template = Handlebars.templates["adapt-article-reveal"];
-            $(this.el).html(template(data)).prependTo('.' + this.model.get("_id"));
+            var template = Handlebars.templates['adapt-article-reveal'];
+            this.$el.html(template(data)).prependTo('.' + this.model.get('_id'));
 
-            var incomplete = this.model.findDescendants("components").where({_isComplete:false});
-            if (incomplete.length === 0) this.setOpenButtonState();
+            if (this.allComponentsCompleted()) {
+                this.setOpenButtonState();
+            }
 
             return this;
         },
 
-        setup: function(event) {
-            if (event) event.preventDefault();
-            //prevent drag on buttons
-            this.preventDrag();
+        setup: function() {
+            if (this.allComponentsCompleted()) return;
 
-            //hide articles
-            var $articleInner = $("." + this.model.get("_id") + " > .article-inner ");
+            this.$el.siblings('.article-inner').css({ display: 'none' });
 
-            var incomplete = this.model.findDescendants("components").where({_isComplete:false});
-            if (incomplete.length > 0){
-                $articleInner.css({display:"none"});
-
-                //hide the components inside the article
-                this.toggleisVisible( false );
-            }
-            this.setDeviceSize();
+            this.toggleisVisible( false );
         },
 
         setDeviceSize: function() {
@@ -67,52 +64,56 @@ define([
         },
 
         setOpenButtonState: function() {
-            this.$(".article-reveal-open-button").addClass('visited show');
+            this.$('.article-reveal-open-button').addClass('visited show');
         },
 
         setClosedButtonState: function() {
-            this.$(".article-reveal-open-button").removeClass('show');
+            this.$('.article-reveal-open-button').removeClass('show');
         },
 
-        closeArticle: function(event) {
-            if (event) event.preventDefault();
+        closeArticle: function(e) {
+            if(e) e.preventDefault();
 
             this.setClosedButtonState();
 
             //animate Close..
-            // this.$(".article-reveal-close-button").velocity("fadeOut", 500);
+            // this.$('.article-reveal-close-button').velocity('fadeOut', 500);
 
             //..and set components to isVisible false
-            this.$el.siblings(".article-inner").velocity("slideUp", 600, _.bind(function() {
+            this.$el.siblings('.article-inner').velocity('slideUp', 600, function() {
                 this.toggleisVisible(false);
-            }, this));
-            this.$el.velocity("scroll", {
+            }.bind(this));
+
+            this.$el.velocity('scroll', {
                 duration: 600,
-                offset: -$(".navigation").outerHeight()
+                offset: -$('.navigation').outerHeight()
             });
-            this.$(".article-reveal-open-button").focus();
+
+            this.$('.article-reveal-open-button').focus();
         },
 
-        revealArticle: function(event) {
-            if (event) event.preventDefault();
-            if(this.$el.closest(".article").hasClass("locked")) return; // in conjunction with pageLocking
+        revealArticle: function(e) {
+            if(e) e.preventDefault();
+
+            if(this.$el.closest('.article').hasClass('locked')) return; // in conjunction with pageLocking
 
             this.setOpenButtonState();
 
             //animate reveal
-            Adapt.trigger("article:revealing", this);
-            this.$el.siblings(".article-inner").velocity("slideDown", 800, _.bind(function() {
-                Adapt.trigger("article:revealed", this);
+            Adapt.trigger('article:revealing', this);
+            this.$el.siblings('.article-inner').velocity('slideDown', 800, function() {
+                Adapt.trigger('article:revealed', this);
                 // Trigger device:resize to enable components that listen to this event to respond to new
                 // article dimensions - fixes components that depend on being visible for setting up layout
-                Adapt.trigger("device:resize");
-            }, this));
-            this.$el.velocity("scroll", {
+                Adapt.trigger('device:resize');
+            }.bind(this));
+
+            this.$el.velocity('scroll', {
                 delay: 400,
                 duration: 800,
-                offset: this.$el.height() - $(".navigation").outerHeight()
+                offset: this.$el.height() - $('.navigation').outerHeight()
             });
-            // this.$(".article-reveal-close-button").velocity("fadeIn", {
+            // this.$('.article-reveal-close-button').velocity('fadeIn', {
             //     delay: 400,
             //     duration: 500
             // });
@@ -125,36 +126,25 @@ define([
          * Toggles the visibility of the components inside the article
          */
         toggleisVisible: function(view) {
-            var allComponents = this.model.findDescendants('components');
-            allComponents.each(function(component) {
-                component.setLocking("_isVisible", false);
+            _.each(this.model.findDescendantModels('components'), function (component) {
+                component.setLocking('_isVisible', false);
                 component.set('_isVisible', view, {
-                    pluginName:"_articleReveal"
+                    pluginName:'_articleReveal'
                 });
             });
         },
 
-        preventDrag: function() {
-            $(".article-reveal-open-button").on("dragstart", function(event) {
-                event.preventDefault();
-            });
-            $(".article-reveal-close-button").on("dragstart", function(event) {
-                event.preventDefault();
-            });
-        },
-
-        // Handles the Adapt page scrollTo event
         onProgressBarScrollTo: function(componentSelector) {
             if (typeof componentSelector == "object") componentSelector = componentSelector.selector;
-            var allComponents = this.model.findDescendants('components');
             var componentID = componentSelector;
             if(componentID.indexOf('.') === 0) componentID = componentID.slice(1);
-            allComponents.each(_.bind(function(component){
+
+            _.each(this.model.findDescendantModels('components'), function(component) {
                 if(component.get('_id') === componentID && !component.get('_isVisible')){
                     this.revealComponent(componentSelector);
                     return;
                 }
-            }, this));
+            }.bind(this));
         },
 
         revealComponent: function(componentSelector) {
@@ -162,21 +152,30 @@ define([
 
             this.toggleisVisible(true);
 
-            $("." + this.model.get("_id") + " > .article-inner ").slideDown(0);
+            this.$el.siblings('.article-inner').slideDown(0);
 
-            this.$(".article-reveal-close-button").fadeIn(1);
+            this.$('.article-reveal-close-button').fadeIn(1);
 
             $(window).scrollTo($(componentSelector), {
                 offset:{
                     top:-$('.navigation').height()
                 }
             }).resize();
-        }
+        },
 
+        allComponentsCompleted: function() {
+            return this.model.findDescendantModels('components').every(function(m) {
+                return m.get('_isComplete') === true;
+            });
+        },
+
+        preventDrag: function(e) {
+            if(e) e.preventDefault();
+        }
     });
 
     Adapt.on('articleView:postRender', function(view) {
-        if (view.model.get("_articleReveal")) {
+        if (view.model.get('_articleReveal')) {
             new ArticleRevealView({
                 model:view.model
             });
