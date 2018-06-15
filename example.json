@@ -1,10 +1,11 @@
 // in the required article object(s) in article.json
 "_articleReveal": {
-    "_isEnabled": false,
+    "_isEnabled": true,
     "_classes": "",
     "_height": 300,
     "_mobileHeight": 200,
     "_icon-text": "REVEAL",
+    "_showCloseButton": true,
     "_closeButtonText": "CLOSE",
     "_triggerPosition": {
         "_top": 30,

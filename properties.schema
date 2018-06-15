@@ -69,6 +69,15 @@
                   "help": "The icon text for the reveal button.",
                   "translatable": true
                 },
+                "_showCloseButton": {
+                  "type": "boolean",
+                  "required": false,
+                  "default": true,
+                  "title": "Show close button?",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Whether or not to display a close button that allows the user to hide the article again"
+                },
                 "_closeButtonText": {
                   "type": "string",
                   "required": false,

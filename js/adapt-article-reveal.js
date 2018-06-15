@@ -1,8 +1,3 @@
-/*
-* adapt-contrib-article-reveal
-* License - http://github.com/adaptlearning/adapt_framework/LICENSE
-* Maintainers - Stuart Nicholls <stuart@stuartnicholls.com>, Mohammed Salamat Ali <Mohammed.SalamatAli@kineo.com>
-*/
 define([
     'core/js/adapt'
 ], function(Adapt) {
@@ -12,8 +7,8 @@ define([
         className: 'article-reveal',
 
         events: {
-            'click .article-reveal-open-button': 'revealArticle',
-            'click .article-reveal-close-button': 'closeArticle',
+            'click .article-reveal-open-button': 'onOpenClicked',
+            'click .article-reveal-close-button': 'onCloseClicked',
             'dragstart .article-reveal-open-button': 'preventDrag',
             'dragstart .article-reveal-close-button': 'preventDrag'
         },
@@ -63,23 +58,65 @@ define([
             this.render();
         },
 
+        onOpenClicked: function (e) {
+            if (e) e.preventDefault();
+
+            if(this.$el.closest('.article').hasClass('locked')) return; // in conjunction with pageLocking
+
+            this.revealArticle();
+
+            this.setOpenButtonState();
+        },
+
+        onCloseClicked: function (e) {
+            if (e) e.preventDefault();
+
+            this.hideArticle();
+
+            this.setClosedButtonState();
+        },
+
         setOpenButtonState: function() {
-            this.$('.article-reveal-open-button').addClass('visited show');
+            this.$('.article-reveal-open-button').addClass('visited show').velocity('fadeOut', 500);
+
+            if(this.model.get('_articleReveal')._showCloseButton) {
+                this.$('.article-reveal-close-button').velocity('fadeIn', 500);
+            }
         },
 
         setClosedButtonState: function() {
-            this.$('.article-reveal-open-button').removeClass('show');
+            this.$('.article-reveal-close-button').velocity('fadeOut', 500);
+
+            this.$('.article-reveal-open-button').removeClass('show').velocity('fadeIn', 500, function(e) {
+                $(this).focus();
+            });
         },
 
-        closeArticle: function(e) {
-            if(e) e.preventDefault();
+        revealArticle: function() {
 
-            this.setClosedButtonState();
+            if(this.$el.closest('.article').hasClass('locked')) return; // in conjunction with pageLocking
 
-            //animate Close..
-            // this.$('.article-reveal-close-button').velocity('fadeOut', 500);
+            Adapt.trigger('article:revealing', this);
 
-            //..and set components to isVisible false
+            this.$el.siblings('.article-inner')
+                    .css({'display': 'block'})// stops components like media from being a really odd size during the reveal animation
+                    .velocity('slideDown', 800, function() {
+                        Adapt.trigger('article:revealed', this);
+                        // Trigger device:resize to enable components that listen to this event to respond to new
+                        // article dimensions - fixes components that depend on being visible for setting up layout
+                        Adapt.trigger('device:resize');
+                    }.bind(this));
+
+            this.$el.velocity('scroll', {
+                delay: 400,
+                duration: 800,
+                offset: this.$el.height() - $('.navigation').outerHeight()
+            });
+
+            this.toggleisVisible(true);
+        },
+
+        hideArticle: function() {
             this.$el.siblings('.article-inner').velocity('slideUp', 600, function() {
                 this.toggleisVisible(false);
             }.bind(this));
@@ -88,38 +125,6 @@ define([
                 duration: 600,
                 offset: -$('.navigation').outerHeight()
             });
-
-            this.$('.article-reveal-open-button').focus();
-        },
-
-        revealArticle: function(e) {
-            if(e) e.preventDefault();
-
-            if(this.$el.closest('.article').hasClass('locked')) return; // in conjunction with pageLocking
-
-            this.setOpenButtonState();
-
-            //animate reveal
-            Adapt.trigger('article:revealing', this);
-            this.$el.siblings('.article-inner').velocity('slideDown', 800, function() {
-                Adapt.trigger('article:revealed', this);
-                // Trigger device:resize to enable components that listen to this event to respond to new
-                // article dimensions - fixes components that depend on being visible for setting up layout
-                Adapt.trigger('device:resize');
-            }.bind(this));
-
-            this.$el.velocity('scroll', {
-                delay: 400,
-                duration: 800,
-                offset: this.$el.height() - $('.navigation').outerHeight()
-            });
-            // this.$('.article-reveal-close-button').velocity('fadeIn', {
-            //     delay: 400,
-            //     duration: 500
-            // });
-
-            //set components to isVisible true
-            this.toggleisVisible(true);
         },
 
         /**
