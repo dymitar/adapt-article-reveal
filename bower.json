@@ -5,7 +5,7 @@
         "url": "git://github.com/cgkineo/adapt-article-reveal"
     },
     "framework": ">=2.2",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "homepage": "https://github.com/cgkineo/adapt-article-reveal",
     "issues": "https://github.com/cgkineo/adapt-article-reveal/issues/",
     "displayName": "Article Reveal",

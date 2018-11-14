@@ -102,9 +102,6 @@ define([
                     .css({'display': 'block'})// stops components like media from being a really odd size during the reveal animation
                     .velocity('slideDown', 800, function() {
                         Adapt.trigger('article:revealed', this);
-                        // Trigger device:resize to enable components that listen to this event to respond to new
-                        // article dimensions - fixes components that depend on being visible for setting up layout
-                        Adapt.trigger('device:resize');
                     }.bind(this));
 
             this.$el.velocity('scroll', {
@@ -114,6 +111,13 @@ define([
             });
 
             this.toggleisVisible(true);
+
+            // MediaElementJS (adapt-contrib-media) responds to window.resize so trigger this
+            $(window).resize();
+
+            // Trigger device:resize to enable components that listen to this event to respond to new
+            // article dimensions - fixes components that depend on being visible for setting up layout
+            Adapt.trigger('device:resize');
         },
 
         hideArticle: function() {
@@ -179,12 +183,14 @@ define([
         }
     });
 
-    Adapt.on('articleView:postRender', function(view) {
-        if (view.model.get('_articleReveal')) {
-            new ArticleRevealView({
-                model:view.model
-            });
-        }
+    Adapt.on('app:dataReady', function() {
+        // do not set up until the article is ready!
+        Adapt.articles.on('change:_isReady', function(model) {
+            if (model.get('_isReady') && model.get('_articleReveal')) {
+                new ArticleRevealView({
+                    model:model
+                });
+            }
+        });
     });
-
 });
