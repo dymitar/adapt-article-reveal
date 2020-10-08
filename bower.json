@@ -2,12 +2,12 @@
     "name": "adapt-article-reveal",
     "repository": {
         "type": "git",
-        "url": "git://github.com/cgkineo/adapt-article-reveal"
+        "url": "https://github.com/dymitar/adapt-article-reveal"
     },
-    "framework": ">=2.2",
-    "version": "2.1.0",
-    "homepage": "https://github.com/cgkineo/adapt-article-reveal",
-    "issues": "https://github.com/cgkineo/adapt-article-reveal/issues/",
+    "framework": ">=5",
+    "version": "2.1.5",
+    "homepage": "https://github.com/dymitar/adapt-article-reveal",
+    "issues": "",
     "displayName": "Article Reveal",
     "extension": "article-reveal",
     "description": "An extension that reveals a hidden article when the user clicks on a button.",

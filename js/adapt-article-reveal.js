@@ -41,9 +41,7 @@ define([
 
         setup: function() {
             if (this.allComponentsCompleted()) return;
-
-            this.$el.siblings('.article-inner').css({ display: 'none' });
-
+            this.$el.siblings('.article__inner').css({ display: 'none' });
             this.toggleisVisible( false );
         },
 
@@ -98,14 +96,14 @@ define([
 
             Adapt.trigger('article:revealing', this);
 
-            this.$el.siblings('.article-inner')
-                    .css({'display': 'block'})// stops components like media from being a really odd size during the reveal animation
-                    .velocity('slideDown', 800, function() {
-                        Adapt.trigger('article:revealed', this);
-                        // Trigger device:resize to enable components that listen to this event to respond to new
-                        // article dimensions - fixes components that depend on being visible for setting up layout
-                        Adapt.trigger('device:resize');
-                    }.bind(this));
+            this.$el.siblings('.article__inner')
+                .css({'display': 'block'})// stops components like media from being a really odd size during the reveal animation
+                .velocity('slideDown', 800, function() {
+                    Adapt.trigger('article:revealed', this);
+                    // Trigger device:resize to enable components that listen to this event to respond to new
+                    // article dimensions - fixes components that depend on being visible for setting up layout
+                    Adapt.trigger('device:resize');
+                }.bind(this));
 
             this.$el.velocity('scroll', {
                 delay: 400,
@@ -117,7 +115,7 @@ define([
         },
 
         hideArticle: function() {
-            this.$el.siblings('.article-inner').velocity('slideUp', 600, function() {
+            this.$el.siblings('.article__inner').velocity('slideUp', 600, function() {
                 this.toggleisVisible(false);
             }.bind(this));
 
@@ -157,7 +155,7 @@ define([
 
             this.toggleisVisible(true);
 
-            this.$el.siblings('.article-inner').slideDown(0);
+            this.$el.siblings('.article__inner').slideDown(0);
 
             this.$('.article-reveal-close-button').fadeIn(1);
 
